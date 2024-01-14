@@ -39,45 +39,54 @@ export default function App() {
 
   if (loaded) {
     return (
-      <div className="weatherAppBody">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="search"
-            placeholder="Type a city..."
-            className="searchBar"
-            onChange={handleChange}
-          ></input>
-          <input
-            type="submit"
-            value="Search"
-            className="searchBarButton"
-          ></input>
-        </form>
-        <h1>{weather.city}</h1>
-        <div className="weatherContainer">
-          <div className="currentTemperature">
-            <img
-              src={weather.weatherIcon}
-              alt="weather-icon"
-              width={64}
-              height={64}
-            />
-            <Temperature celsius={weather.temperature} />
+      <div>
+        <div className="weatherAppBody">
+          <form onSubmit={handleSubmit}>
+            <input
+              type="search"
+              placeholder="Search for a city..."
+              className="searchBar"
+              onChange={handleChange}
+            ></input>
+            <input
+              type="submit"
+              value="Search"
+              className="searchBarButton"
+            ></input>
+          </form>
+          <h1>{weather.city}</h1>
+          <div className="weatherContainer">
+            <div className="currentTemperature">
+              <img
+                src={weather.weatherIcon}
+                alt="weather-icon"
+                width={64}
+                height={64}
+              />
+              <Temperature celsius={weather.temperature} />
+            </div>
+
+            <ul className="weatherDescription">
+              <li>Humidity: {weather.humidity}%</li>
+              <li>Wind: {weather.wind} km/h</li>
+            </ul>
+
+            <ul className="dateDescription">
+              <h2>Weather</h2>
+              <li>
+                <CurrentDate date={weather.date} />
+              </li>
+              <li className="currentWeather">{weather.description}</li>
+            </ul>
           </div>
-
-          <ul className="weatherDescription">
-            <li>Humidity: {weather.humidity}%</li>
-            <li>Wind: {weather.wind} km/h</li>
-          </ul>
-
-          <ul className="dateDescription">
-            <h2>Weather</h2>
-            <li>
-              <CurrentDate date={weather.date} />
-            </li>
-            <li className="currentWeather">{weather.description}</li>
-          </ul>
         </div>
+        <p className="footer">
+          This project was coded by Lindis Jørgensen and is{" "}
+          <a href="https://github.com/lindijor/react-weather-application">
+            open-sourced on GitHub
+          </a>{" "}
+          and hosted on Netlify.
+        </p>
       </div>
     );
   } else {
