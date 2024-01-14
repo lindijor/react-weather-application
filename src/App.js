@@ -6,29 +6,48 @@ import CurrentDate from "./CurrentDate";
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState("");
+  const [city, setCity] = useState("Oslo");
+  const [inputValue, setInputValue] = useState("Oslo");
 
   function updateWeatherDetails(response) {
     console.log(response);
     setWeather({
+      city: response.data.name,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
       humidity: response.data.main.humidity,
-      weatherIcon:
-        "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      weatherIcon: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       description: response.data.weather[0].description,
     });
     setLoaded(true);
   }
 
+  function search() {
+    const apiKey = "aa76e8ebb986fd56a8de4b09138a4e55";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(updateWeatherDetails);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    setCity(inputValue);
+    search();
+  }
+
+  function handleChange(event) {
+    setInputValue(event.target.value);
+  }
+
   if (loaded) {
     return (
       <div className="weatherAppBody">
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="search"
             placeholder="Type a city..."
             className="searchBar"
+            onChange={handleChange}
           ></input>
           <input
             type="submit"
@@ -36,14 +55,14 @@ export default function App() {
             className="searchBarButton"
           ></input>
         </form>
-        <h1>Oslo</h1>
+        <h1>{city}</h1>
         <div className="weatherContainer">
           <div className="currentTemperature">
             <img
               src={weather.weatherIcon}
               alt="weather-icon"
-              width={64}
-              height={64}
+              width={66}
+              height={66}
             />
             <p className="degrees">{Math.round(weather.temperature)}</p>
             <p className="celsius">°C</p>
@@ -59,17 +78,13 @@ export default function App() {
             <li>
               <CurrentDate date={weather.date} />
             </li>
-            <li>{weather.description}</li>
+            <li className="currentWeather">{weather.description}</li>
           </ul>
         </div>
       </div>
     );
   } else {
-    const apiKey = "aa76e8ebb986fd56a8de4b09138a4e55";
-    let city = "Paris";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(updateWeatherDetails);
-
+    search();
     return "Loading...";
   }
 }
