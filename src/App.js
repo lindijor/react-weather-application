@@ -10,7 +10,6 @@ export default function App() {
   const [city, setCity] = useState("Oslo");
 
   function updateWeatherDetails(response) {
-    console.log(response);
     setWeather({
       city: response.data.name,
       date: new Date(response.data.dt * 1000),
@@ -54,7 +53,7 @@ export default function App() {
             className="searchBarButton"
           ></input>
         </form>
-        <h1>{city}</h1>
+        <h1>{weather.city}</h1>
         <div className="weatherContainer">
           <div className="currentTemperature">
             <img
