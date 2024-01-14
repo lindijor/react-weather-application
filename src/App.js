@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import CurrentDate from "./CurrentDate";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState("");
 
   function updateWeatherDetails(response) {
-    setWeather(response.data.main.temp);
+    console.log(response);
+    setWeather({
+      date: new Date(response.data.dt * 1000),
+      temperature: response.data.main.temp,
+      wind: response.data.wind.speed,
+      humidity: response.data.main.humidity,
+      weatherIcon:
+        "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      description: response.data.weather[0].description,
+    });
     setLoaded(true);
   }
 
@@ -30,32 +40,33 @@ export default function App() {
         <div className="weatherContainer">
           <div className="currentTemperature">
             <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              src={weather.weatherIcon}
               alt="weather-icon"
               width={64}
               height={64}
             />
-            <p className="degrees">{Math.round(weather)}</p>
+            <p className="degrees">{Math.round(weather.temperature)}</p>
             <p className="celsius">°C</p>
           </div>
 
           <ul className="weatherDescription">
-            <li>Nedbør: 0%</li>
-            <li>Luftfuktighet: 76%</li>
-            <li>Vind: 1 m/s</li>
+            <li>Humidity: {weather.humidity}%</li>
+            <li>Wind: {weather.wind} km/h</li>
           </ul>
 
           <ul className="dateDescription">
-            <h2>Været</h2>
-            <li>lørdag kl 21:00</li>
-            <li>For det meste skyet</li>
+            <h2>Weather</h2>
+            <li>
+              <CurrentDate date={weather.date} />
+            </li>
+            <li>{weather.description}</li>
           </ul>
         </div>
       </div>
     );
   } else {
     const apiKey = "aa76e8ebb986fd56a8de4b09138a4e55";
-    let city = "London";
+    let city = "Paris";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(updateWeatherDetails);
 
