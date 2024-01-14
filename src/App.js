@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import CurrentDate from "./CurrentDate";
+import Temperature from "./Temperature";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [weather, setWeather] = useState("");
   const [city, setCity] = useState("Oslo");
-  const [inputValue, setInputValue] = useState("Oslo");
 
   function updateWeatherDetails(response) {
     console.log(response);
@@ -31,12 +31,11 @@ export default function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setCity(inputValue);
     search();
   }
 
   function handleChange(event) {
-    setInputValue(event.target.value);
+    setCity(event.target.value);
   }
 
   if (loaded) {
@@ -61,11 +60,10 @@ export default function App() {
             <img
               src={weather.weatherIcon}
               alt="weather-icon"
-              width={66}
-              height={66}
+              width={64}
+              height={64}
             />
-            <p className="degrees">{Math.round(weather.temperature)}</p>
-            <p className="celsius">°C</p>
+            <Temperature celsius={weather.temperature} />
           </div>
 
           <ul className="weatherDescription">
@@ -84,7 +82,7 @@ export default function App() {
       </div>
     );
   } else {
-    search();
+    search("Oslo");
     return "Loading...";
   }
 }

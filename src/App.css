@@ -7,7 +7,7 @@ body {
   border-radius: 4px;
   width: 600px;
   margin: 50px auto;
-  padding: 30px;
+  padding: 25px;
 }
 
 .searchBar {
@@ -37,7 +37,7 @@ body {
 
 .weatherContainer {
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-columns: 2fr 2fr 3fr;
 }
 
 .weatherContainer li {
@@ -52,20 +52,22 @@ body {
   color: rgb(32, 33, 36);
   font-size: 48px;
   font-weight: 400;
-  margin: 0 0 0 10px;
+  margin-right: 5px;
 }
 
-.celsius {
+.units {
   color: rgb(32, 33, 36);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
   margin: 0;
-  line-height: 35px;
+  vertical-align: top;
+  line-height: 30px;
 }
 
 .weatherDescription {
   font-size: 12px;
   line-height: 17px;
+  padding-left: 15px;
 }
 
 .dateDescription {
