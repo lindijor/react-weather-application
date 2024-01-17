@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import CurrentDate from "./CurrentDate";
 import Temperature from "./Temperature";
+import Forecast from "./Forecast";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -79,6 +80,7 @@ export default function App() {
               <li className="currentWeather">{weather.description}</li>
             </ul>
           </div>
+          <Forecast />
         </div>
         <p className="footer">
           This project was coded by Lindis Jørgensen and is{" "}
