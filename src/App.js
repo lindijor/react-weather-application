@@ -74,7 +74,7 @@ export default function App() {
             </ul>
 
             <ul className="dateDescription">
-              <h2>Weather</h2>
+              <h2>Current weather</h2>
               <li>
                 <CurrentDate date={weather.date} />
               </li>

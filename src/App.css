@@ -3,11 +3,12 @@ body {
 }
 
 .weatherAppBody {
-  border: 1px #d9d9d9 solid;
   border-radius: 4px;
   width: 600px;
-  margin: 50px auto 0;
-  padding: 25px;
+  margin: 100px auto 0;
+  padding: 50px 30px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .searchBar {
@@ -105,7 +106,48 @@ h2 {
 }
 
 .footer {
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+  .weatherAppBody {
+    width: 350px;
+    margin: 50px auto 0;
+    padding: 20px 10px;
+  }
+
+  .weatherContainer {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  .weatherDescription {
+    display: none;
+  }
+
+  .degrees {
+    font-size: 36px;
+  }
+
+  .units {
+    font-size: 12px;
+  }
+
+  .weatherDescription {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 35px;
+    padding-left: 10px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  .dateDescription li {
+    font-size: 12px;
+  }
 }
