@@ -8,15 +8,8 @@ export default function Forecast(props) {
   let [forecast, setForecast] = useState("");
 
   useEffect(() => {
-    if (!loaded) {
-      let apiKey = "025000aa1bof6148etc27f34c35bd48a";
-      let lat = props.coordinates.lat;
-      let lon = props.coordinates.lon;
-      let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
-
-      axios.get(apiUrl).then(getForecast);
-    }
-  }, [props.coordinates, loaded]);
+    setLoaded(false);
+  }, [props.coordinates]);
 
   function getForecast(response) {
     setForecast(response.data.daily);
@@ -24,8 +17,25 @@ export default function Forecast(props) {
   }
 
   if (loaded) {
-    return <ForecastDay data={forecast[0]} />;
+    return (
+      <div className="forecastContainer">
+        {forecast.map(function (dailyForecast, index) {
+          return (
+            <span key={index}>
+              <ForecastDay data={dailyForecast} />
+            </span>
+          );
+        })}
+      </div>
+    );
   } else {
+    let apiKey = "025000aa1bof6148etc27f34c35bd48a";
+    let lat = props.coordinates.lat;
+    let lon = props.coordinates.lon;
+    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+
+    axios.get(apiUrl).then(getForecast);
+
     return "Loading forecast...";
   }
 }

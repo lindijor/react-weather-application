@@ -21,15 +21,13 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <div className="forecastContainer">
-      <div>
-        <p>{day()}</p>
-        <img src={props.data.condition.icon_url} alt="weather-icon" />
-        <p>
-          <span className="tempMax">{maxTemp()}</span> |{" "}
-          <span className="tempMin"> {minTemp()}</span>
-        </p>
-      </div>
+    <div>
+      <p>{day()}</p>
+      <img src={props.data.condition.icon_url} alt="weather-icon" />
+      <p>
+        <span className="tempMax">{maxTemp()}</span> |{" "}
+        <span className="tempMin"> {minTemp()}</span>
+      </p>
     </div>
   );
 }
