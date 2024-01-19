@@ -13,6 +13,7 @@ export default function App() {
   function updateWeatherDetails(response) {
     setWeather({
       city: response.data.name,
+      coordinates: response.data.coord,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       wind: response.data.wind.speed,
@@ -80,7 +81,7 @@ export default function App() {
               <li className="currentWeather">{weather.description}</li>
             </ul>
           </div>
-          <Forecast />
+          <Forecast coordinates={weather.coordinates} />
         </div>
         <p className="footer">
           This project was coded by Lindis Jørgensen and is{" "}

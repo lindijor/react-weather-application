@@ -37,7 +37,7 @@ body {
 
 .weatherContainer {
   display: grid;
-  grid-template-columns: 2fr 2fr 3fr;
+  grid-template-columns: 2fr 1.5fr 3fr;
 }
 
 .weatherContainer li {
@@ -50,14 +50,14 @@ body {
 
 .degrees {
   color: rgb(32, 33, 36);
-  font-size: 48px;
+  font-size: 46px;
   font-weight: 400;
   margin-right: 5px;
 }
 
 .units {
   color: rgb(32, 33, 36);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   margin: 0;
   vertical-align: top;
