@@ -111,6 +111,10 @@ h2 {
   margin-top: 20px;
 }
 
+.hosting {
+  margin-top: 4px;
+}
+
 @media (max-width: 900px) {
   .weatherAppBody {
     width: 350px;

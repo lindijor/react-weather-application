@@ -84,11 +84,15 @@ export default function App() {
           <Forecast coordinates={weather.coordinates} />
         </div>
         <p className="footer">
-          This project was coded by Lindis Jørgensen and is{" "}
+          This project was coded by{" "}
+          <a href="https://github.com/lindijor">Lindis Jørgensen</a> and is{" "}
           <a href="https://github.com/lindijor/react-weather-application">
             open-sourced on GitHub
-          </a>{" "}
-          and hosted on Netlify.
+          </a>
+          .{" "}
+          <div className="hosting">
+            <i>Hosted on Netlify.</i>
+          </div>
         </p>
       </div>
     );
